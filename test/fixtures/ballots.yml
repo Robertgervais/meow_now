@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ballot_issue: MyText
+  user_id: 1
+  options: MyString
+  ballot_type: MyString
+  content: MyText
+  expiration: 2018-06-25 15:46:04
+  include_weekend: false
+
+two:
+  ballot_issue: MyText
+  user_id: 1
+  options: MyString
+  ballot_type: MyString
+  content: MyText
+  expiration: 2018-06-25 15:46:04
+  include_weekend: false

@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MeowNow</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>CutCats</title>
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'%>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <% if logged_in %>
+            <li class="nav-item">
+                <%=link_to "Logout", logout_path, :method => :delete %>
+            </li>
+            <li> | </li>
+            <li class="nav-item">
+                <%=link_to "Ballots", ballots_path %>
+            </li>
+            <li> | </li>
+          <% end %>
+          <% if logged_in && current_user_is_admin %>
+            <li class="nav-item">
+                <%=link_to "Admin"%>
+            </li>
+            <li> | </li>
+            <li class="nav-item">
+                <%= link_to "Schedule"%>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
 
-  <body>
-    <%= yield %>
-  </body>
+<% if flash[:alert] %>
+      <div id="alert">
+         <%= flash[:alert] %> 
+      </div>
+<% end %>
+<%= yield %>
+
+</body>
 </html>

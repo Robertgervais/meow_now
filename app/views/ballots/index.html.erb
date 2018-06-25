@@ -1,0 +1,38 @@
+
+<h1> Ballots </h1>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Ballot Author</td>
+			<th>Issue</td>
+			<th>Transparency</th>
+			<th>Created At</th>
+			<th>Active?</td>
+		</tr>
+	<% @ballots.each do |ballot| %>
+		<tr>
+			<td><%=ballot.user.username %></td>
+			<td><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
+			<td><%=ballot.ballot_type %></td>
+			<td><%=ballot.created_at %></td>
+			<% if ballot.all_expiration_requirements_met? %>
+				<td>Expired</td>
+			<% elsif ballot.expired?%>
+				<td> Expired but awaiting Votes</td>
+			<% else %>
+				<td> Active </td>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+<div class="container">
+	<% if current_user_is_admin %>
+		<%=link_to "New Ballot", new_ballot_path, :class => "btn btn-primary" %>
+	<% end %>
+</div>
+<div class= "container">
+	<h2> List of users who have not voted yet </h2>
+	<ul>
+		<% @open_ballots.each do |ballot| %>
+			<li><%=ballot.ballot_issue%></li>
+		<% end %>
+</div>

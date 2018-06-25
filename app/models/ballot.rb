@@ -1,0 +1,88 @@
+class Ballot < ActiveRecord::Base
+
+	belongs_to :user
+	has_many :votes
+	before_create :set_expiration_date
+
+	validates :options, presence: true
+
+	def expired?
+		Time.now > self.expiration
+	end
+
+	def all_expiration_requirements_met?
+		enough_votes? && expired?
+	end
+
+	def tally
+		tallied_votes = Hash.new
+		if too_many_b_members
+			get_options.each do |option|
+				tallied_votes.store[option] = get_results_count(option)
+			end
+		else
+			get_options.each do |option|
+				tallied_votes[option] = get_results_weighted(option)
+			end
+		end
+		tallied_votes
+	end
+
+	private
+	def set_expiration_date
+		if self.include_weekend
+			self.expiration = DateTime.now + 96.hours
+		else
+			self.expiration = DateTime.now + 48.hours
+		end
+	end
+
+	def get_options
+		ballot_votes.select(:user_vote).map(&:user_vote).uniq
+	end
+
+	def get_b_weight
+		(how_many("A") / 4) / how_many("B").to_f
+	end
+	
+	def how_many(membership)
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count
+	end
+	
+	def get_results_count(option)
+		ballot_votes.select {|vote| vote.user_vote == option}.count
+	end
+
+	def get_results(option)
+		ballot_votes.select {|vote| vote.user_vote == option}
+	end
+
+	def get_results_weighted(option)
+		count = 0
+		get_results(option).each do |vote|
+			if vote.user.membership == "A"
+				count += 1
+			elsif vote.user.membership == "B"
+				count += get_b_weight
+			end
+		end
+		count
+	end
+
+	def too_many_b_members
+		if how_many("B") > 0
+			(how_many("B") / how_many("A")).to_f < 0.2
+		else
+			false
+		end
+	end
+
+	def ballot_votes
+		self.votes
+	end
+
+	def enough_votes?
+		(how_many("A") / User.all.select{|user| user.membership == "A"}.count).to_f >= 0.75
+	end
+
+end
