@@ -27,10 +27,18 @@
 <div class="container">
 		<%=link_to "New Ballot", new_ballot_path, :class => "btn btn-primary" %>
 </div>
-<div class= "container">
-	<h2> List of users who have not voted yet </h2>
-	<ul>
-		<% @open_ballots.each do |ballot| %>
-			<li><%=ballot.ballot_issue%></li>
-		<% end %>
-</div>
+<% if current_user_is_admin %>
+	<div class= "container">
+		<h2> List of A members who have not voted yet </h2>
+			<ul>
+				<% @open_ballots.each do |ballot| %>
+					<li><%= ballot.ballot_issue%></li>
+						<ul>
+							<% find_users_that_have_not_voted(ballot.id).each do |user| %>
+								<li> <%= user.username %></li>
+							<% end %>
+						</ul>
+				<% end %>
+			<ul>
+	</div>
+<% end %>

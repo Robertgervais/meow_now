@@ -7,4 +7,5 @@ module BallotHelper
 	def open_ballots
 		Ballot.all.select{|ballot| !(ballot.all_expiration_requirements_met?)}
 	end
+
 end
