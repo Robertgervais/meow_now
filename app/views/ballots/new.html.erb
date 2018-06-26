@@ -8,11 +8,11 @@
 
 	<p>
 		<%= f.label :ballot_issue %> <br>
-		<%= f.text_field :ballot_issue, :class => 'form-control' %> <br>
+		<%= f.text_field :ballot_issue, :class => 'form-control col-md-4' %> <br>
 		<%= f.label :content %> <br>
-		<%= f.text_area :content, :class => 'form-control' %> <br>
+		<%= f.text_area :content, :class => 'form-control col-md-4' %> <br>
 		<%= f.label :options, "Options (Please separate with commas)" %> <br>
-		<%= f.text_field :options, :class => 'form-control' %>
+		<%= f.text_field :options, :class => 'form-control col-md-4' %>
 		<%= f.label :ballot_type %>
 		<%= f.select :ballot_type, options_for_select(["Public", "Private"]) %><br>
 		<%= f.label :will_ballot_duration_include_weekends %>
