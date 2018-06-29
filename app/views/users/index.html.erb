@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+		<tr>
+			<th>User</td>
+			<th>Membership</th>
+			<th>Admin?</th>
+		</tr>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= link_to "#{user.username}", user_path(user) %></td>
+			<td><%= user.membership %></td>
+			<% if user.admin %>
+				<td>Yes</td>
+			<% else %>
+				<td>No</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
