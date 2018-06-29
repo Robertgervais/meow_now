@@ -1,28 +1,46 @@
-
-<h1><%= "#{@ballot.ballot_issue}" %></h1>
-<h2>Proposed by: <%= "#{@ballot.user.username}" %></h2>
-<p><%= @ballot.content %></p>
-
-<% if !@ballot.all_expiration_requirements_met? %>
-	<%= form_for :vote, url: ballot_votes_path(@ballot) do |f| %>
-		<% @radio.each do |option| %>
-			<%= radio_button_tag(:cast_vote, "#{option.strip}") %>
-			<%= label_tag(:option, "#{option.strip}") %>
+<div class="container">
+	<div class="row">
+		<h1 class="col-md-5"><%= "#{@ballot.ballot_issue}" %></h1>
+		<div class="col-md-7"></div>
+	</div>
+	<div class="row">
+		<h2 class="col-md-5">Proposed by: <%= "#{@ballot.user.username}"%></h2>
+		<div class="col-md-7"></div>
+	</div>
+	<div class="row">
+		<p class="col-md-5"><%= @ballot.content %></p>
+		<div class="col-md-7">
+			<% if !@ballot.all_expiration_requirements_met? %>
+				<%= form_for :vote, url: ballot_votes_path(@ballot) do |f| %>
+					<% @radio.each do |option| %>
+						<%= radio_button_tag(:cast_vote, "#{option.strip}") %>
+						<%= label_tag(:option, "#{option.strip}") %>
+			<% end %>
+			<%= f.submit "Cast Vote"%>
 		<% end %>
-		<%= f.submit "Cast Vote"%>
-	<% end %>
-<% else %>
-	<p> Ballot Closed </p>
-<%end %>
-
-<ul>
-<% @results.each do |key, value| %>
-	<li><%= "#{key}: #{value}" %>
-<% end %>
-</ul>
-
-<% if @ballot.ballot_type == "Private" %>
-	<%= render partial: "private", object: @ballot %>
-<% elsif @ballot.ballot_type == "Public" %>
-	<%= render partial: "public", object: @ballot %>
-<% end %>
+			<% else %>
+				<p> Ballot Closed </p>
+		<%end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Vote Results:</div>
+		<div class="col-md-10">
+			<ul>
+			<% @results.each do |key, value| %>
+				<li><%= "#{key}: #{value}" %></li>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">Breakdown</div>
+		<div class="col-md-10">
+			<% if @ballot.ballot_type == "Private" %>
+				<%= render partial: "private", object: @ballot %>
+			<% elsif @ballot.ballot_type == "Public" %>
+				<%= render partial: "public", object: @ballot %>
+			<% end %>
+		</div>
+	</div>
+</div>
