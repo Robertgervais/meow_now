@@ -1,0 +1,5 @@
+<p> Voters: <p>
+		<ul>
+		<% @ballot.voters.each do |voter| %>
+			<li><%= voter.username %>
+		<% end %>

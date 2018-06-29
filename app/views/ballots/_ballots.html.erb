@@ -1,0 +1,13 @@
+<tr>
+	<td><%=ballot.user.username %></td>
+	<td><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
+	<td><%=ballot.ballot_type %></td>
+	<td><%=ballot.created_at %></td>
+	<% if ballot.all_expiration_requirements_met? %>
+		<td>Expired</td>
+	<% elsif ballot.expired?%>
+		<td> Expired but awaiting Votes</td>
+	<% else %>
+		<td> Active </td>
+	<% end %>
+</tr>

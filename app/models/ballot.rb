@@ -14,6 +14,14 @@ class Ballot < ActiveRecord::Base
 		enough_votes? && expired?
 	end
 
+	def voters
+		users = []
+		self.votes.each do |vote|
+			users << vote.voter
+		end
+		users
+	end
+
 	def tally
 		tallied_votes = Hash.new
 		if too_many_b_members
@@ -28,6 +36,9 @@ class Ballot < ActiveRecord::Base
 		tallied_votes
 	end
 
+	def how_many(membership)
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count
+	end
 	private
 	def set_expiration_date
 		if self.include_weekend
@@ -45,9 +56,6 @@ class Ballot < ActiveRecord::Base
 		(how_many("A") / 4) / how_many("B").to_f
 	end
 	
-	def how_many(membership)
-		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count
-	end
 	
 	def get_results_count(option)
 		ballot_votes.select {|vote| vote.user_vote == option}.count

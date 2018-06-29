@@ -23,3 +23,9 @@
 	<li><%= "#{key}: #{value}" %>
 <% end %>
 </ul>
+
+<% if @ballot.ballot_type == "Private" %>
+	<%= render partial: "private", object: @ballot %>
+<% elsif @ballot.ballot_type == "Public" %>
+	<%= render partial: "public", object: @ballot %>
+<% end %>
