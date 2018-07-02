@@ -5,11 +5,16 @@
 	</div>
 	<div class="row">
 		<h2 class="col-md-5">Proposed by: <%= "#{@ballot.user.username}"%></h2>
+		<h2 class="col-md-5">Transparency: <%="#{@ballot.ballot_type}"%></h2>
+		<div class="col-md-5"></div>
+	</div>
+	<div class="row">
+		<p class="col-md-5"><%= @ballot.content.gsub(/\n/, '<br />').html_safe %></p>
 		<div class="col-md-7"></div>
 	</div>
 	<div class="row">
-		<p class="col-md-5"><%= @ballot.content %></p>
-		<div class="col-md-7">
+		<div class="col-md-7"></div>
+		<div class="col-md-5">
 			<% if !@ballot.all_expiration_requirements_met? %>
 				<%= form_for :vote, url: ballot_votes_path(@ballot) do |f| %>
 					<% @radio.each do |option| %>
@@ -34,7 +39,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2">Breakdown</div>
+		<div class="col-md-2">Breakdown:</div>
 		<div class="col-md-10">
 			<% if @ballot.ballot_type == "Private" %>
 				<%= render partial: "private", object: @ballot %>

@@ -22,6 +22,15 @@ class Ballot < ActiveRecord::Base
 		users
 	end
 
+	def voters_with_choice
+		combo = Hash.new
+		voters.each do |voter|
+			combo[voter] = self.votes.find_by(user_id: voter.id).user_vote
+		end
+		combo
+	end
+
+
 	def tally
 		tallied_votes = Hash.new
 		if too_many_b_members

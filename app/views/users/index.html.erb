@@ -6,7 +6,7 @@
 		</tr>
 	<% @users.each do |user| %>
 		<tr>
-			<td><%= link_to "#{user.username}", user_path(user) %></td>
+			<td><%= link_to "#{user.username}", edit_user_path(user) %></td>
 			<td><%= user.membership %></td>
 			<% if user.admin %>
 				<td>Yes</td>
