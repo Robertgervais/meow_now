@@ -27,7 +27,7 @@
 		<%=link_to "New Ballot", new_ballot_path, :class => "btn btn-primary" %>
 </div>
 <% if current_user_is_admin %>
-	<h2> List of A members who have not voted yet </h2>
+	<h2> List of ballots awaiting votes </h2>
 	<ul>
 		<%= render partial: "awaiting_vote", collection: @open_ballots, as: :ballot %>
 	<ul>

@@ -1,6 +1,7 @@
 class BallotsController < ApplicationController
 	include SessionsHelper
 	include BallotHelper
+	include VotesHelper
 
 	def index
 		if logged_in
@@ -33,6 +34,13 @@ class BallotsController < ApplicationController
 	end
 
 	def edit
+	end
+
+	def pending
+		@users = find_users_that_have_not_voted(params[:id])
+		respond_to do |format|
+			format.json {render json: @users }
+		end
 	end
 
 	private
