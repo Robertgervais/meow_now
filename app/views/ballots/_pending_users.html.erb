@@ -1,0 +1,27 @@
+<li>
+  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+    <%= open_ballot.ballot_issue %>
+  </button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><%= open_ballot.ballot_issue%></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+              <% find_users_that_have_not_voted(open_ballot.id).each do |user| %>
+                <li><%= user %></li>
+              <% end %>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

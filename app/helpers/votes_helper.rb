@@ -12,7 +12,7 @@ module VotesHelper
 		not_voted = []
 		a_list.each do |user|
 			if !(user.votes.find_by(ballot_id: ballot_id))
-				not_voted << user
+				not_voted << user.username
 			end
 		end
 		not_voted

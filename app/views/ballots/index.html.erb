@@ -29,6 +29,10 @@
 <% if current_user_is_admin %>
 	<h2> List of ballots awaiting votes </h2>
 	<ul>
-		<%= render partial: "awaiting_vote", collection: @open_ballots, as: :ballot %>
+		<%= render partial: "ballots/pending_users", collection: @open_ballots, as: :open_ballot %>
 	<ul>
 <% end %>
+
+<!-- Button trigger modal -->
+
+

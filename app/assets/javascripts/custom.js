@@ -4,14 +4,5 @@ $( document ).ready(function() {
         e.preventDefault();
         var id = $(this).attr('id');
         console.log(id);
-          $.ajax({
-            url: "/pending",
-            type: "GET",
-            data: {'id': id},
-            dataType: "json",
-            success: function(data){
-              console.log(data);
-          }
-      });
    });
 });
