@@ -29,7 +29,7 @@
 <% if current_user_is_admin %>
 	<h2> List of ballots awaiting votes </h2>
 	<ul>
-		<%= render partial: "ballots/pending_users", collection: @open_ballots, as: :open_ballot %>
+		<%= render partial: "ballots/awaiting_vote", collection: @open_ballots, as: :ballot %>
 	<ul>
 <% end %>
 

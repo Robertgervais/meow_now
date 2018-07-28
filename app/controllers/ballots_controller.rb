@@ -38,9 +38,6 @@ class BallotsController < ApplicationController
 
 	def pending
 		@users = find_users_that_have_not_voted(params[:id])
-		respond_to do |format|
-
-		end
 	end
 
 	private

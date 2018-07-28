@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 	resources :ballots do
 		resources :votes
 	end
+	get 'pending/:id', to: 'ballots#pending', as: :pending
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy'
-	get 'pending', to: 'ballots#pending'
 end
