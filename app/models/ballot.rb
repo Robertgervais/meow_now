@@ -10,6 +10,10 @@ class Ballot < ActiveRecord::Base
 		Time.now > self.expiration
 	end
 
+	def has_support?
+		self.support_first && self.support_second
+	end
+
 	def all_expiration_requirements_met?
 		enough_votes? && expired?
 	end

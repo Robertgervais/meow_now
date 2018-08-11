@@ -21,9 +21,15 @@
               <%=link_to "Logout", logout_path, :method => :delete %>
             </button>
             <li> | </li>
-            <button class="nav-item btn btn-secondary">
-                <%=link_to "Ballots", ballots_path %>
-            </button>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ballots
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%=link_to 'View Ballots', ballots_path%><br>
+                <%=link_to "New Ballot", new_ballot_path %>
+              </div>
+            </div>
             <li> | </li>
           <% end %>
           <% if logged_in && current_user_is_admin %>

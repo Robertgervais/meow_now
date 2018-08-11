@@ -40,6 +40,19 @@ class BallotsController < ApplicationController
 		@users = find_users_that_have_not_voted(params[:id])
 	end
 
+	def add_support
+		@ballot= Ballot.find_by(params[:id])
+		if @ballot.first_support == nil
+			@ballot.first_support = current_user.username
+			@ballot.save
+		elsif @ballot.first_support = nil
+			@ballot.second_support = current_user.username
+			@ballot.save
+		else
+			redirect_to ballot_path(@ballot)
+		end
+	end
+
 	private
 	def ballot_params
 		params.require(:ballot).permit(:ballot_issue, :options, :ballot_type, :content, :include_weekend)

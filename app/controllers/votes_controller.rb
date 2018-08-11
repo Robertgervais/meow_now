@@ -17,4 +17,7 @@ class VotesController < ApplicationController
 			redirect_to ballot_path(params[:ballot_id])
 		end
 	end
+
+	def support
+	end
 end
