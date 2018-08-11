@@ -9,6 +9,9 @@
 		<div class="col-md-5"></div>
 	</div>
 	<div class="row">
+		<p class="col-md-12"><%="#{@ballot.support}"%></p>
+	</div>
+	<div class="row">
 		<p class="col-md-5"><%= @ballot.content.gsub(/\n/, '<br />').html_safe %></p>
 		<div class="col-md-7"></div>
 	</div>
@@ -24,7 +27,7 @@
 			<%= f.submit "Cast Vote"%>
 		<% end %>
 			<% elsif !@ballot.all_expiration_requirements_met? && !@ballot.has_support? %>
-				<%= link_to "Support this ballot?!?!?" %>
+				<%= link_to "Support this ballot?!?!?", support_path(:ballot_id => "#{@ballot.id}"), :method => :post %>
 			<% else %>
 				<p> Ballot Closed </p>
 		<%end %>

@@ -41,13 +41,15 @@ class BallotsController < ApplicationController
 	end
 
 	def add_support
-		@ballot= Ballot.find_by(params[:id])
-		if @ballot.first_support == nil
-			@ballot.first_support = current_user.username
+		@ballot = Ballot.find(params[:id])
+		if @ballot.support_first == nil
+			@ballot.support_first = current_user.username
 			@ballot.save
-		elsif @ballot.first_support = nil
-			@ballot.second_support = current_user.username
+			redirect_to ballot_path(@ballot)
+		elsif @ballot.support_second == nil && @ballot.support_first != current_user.username
+			@ballot.support_second = current_user.username
 			@ballot.save
+			redirect_to ballot_path(@ballot)
 		else
 			redirect_to ballot_path(@ballot)
 		end

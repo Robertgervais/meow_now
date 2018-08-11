@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
 	delete 'logout', to: 'sessions#destroy'
+	post 'support/:id', to: 'ballots#add_support', as: :support
 end

@@ -18,6 +18,16 @@ class Ballot < ActiveRecord::Base
 		enough_votes? && expired?
 	end
 
+	def support
+		if support_first && support_second
+			support = "This ballot is supported by #{support_first} and #{support_second}"
+		elsif support_first
+			support = "This ballot is supported by #{support_first}"
+		else
+			support = "Ballot has no support yet"
+		end
+	end
+
 	def voters
 		users = []
 		self.votes.each do |vote|
