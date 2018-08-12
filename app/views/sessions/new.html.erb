@@ -11,7 +11,7 @@
 
 	<p>
 		<%= f.label :password %> <br>
-		<%= f.text_field :password, :class => 'form-control col-md-2' %> <br>
+		<%= password_field_tag(:password, "") %>
 	</p>
 	<p>
 		<%= f.submit "Login", :class => "btn btn-primary"%>

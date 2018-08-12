@@ -1,5 +1,5 @@
 <h1> Edit User </h1>
-<%= form_for :user, url:user_path do |f| %>
+<%= form_for @user, url:user_path do |f| %>
 	<% if @user.errors.any? %>
 		<% @user.errors.full_messages.each do |error| %>
 			<div class="alert alert-danger"><%=error %> </div>
@@ -13,6 +13,10 @@
 	<p>
 		<%= f.label :admin? %>
 		<%= f.select :admin, [['Yes', true],["No", false]]  %><br>
+	</p>
+	<p>
+		<%= f.label :active? %>
+		<%= f.select :active?, [['Yes', true],["No", false]]  %><br>
 	</p>
 		<%= f.submit :class => "btn btn-primary" %>
 	</p>

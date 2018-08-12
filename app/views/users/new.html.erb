@@ -28,6 +28,10 @@
 		<%= f.label :admin? %>
 		<%= f.select :admin, [['Yes', true],["No", false]]  %><br>
 	</p>
+	<p>
+		<%= f.label :active? %>
+		<%= f.select :active?, [['Yes', true],["No", false]]  %><br>
+	</p>
 		<%= f.submit :class => "btn btn-primary" %>
 	</p>
 <% end %>
