@@ -10,7 +10,11 @@
 	</tr>
 <% @ballots.each do |ballot| %>
 	<tr>
-		<td><%=ballot.user.username %></td>
+		<% if ballot.user %>
+			<td><%=ballot.user.username %></td>
+		<% else %>
+			<td>User Deleted</td>
+		<% end %>
 		<td><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
 		<td><%=ballot.ballot_type %></td>
 		<td><%=ballot.created_at.to_formatted_s %></td>
