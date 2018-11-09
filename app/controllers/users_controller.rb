@@ -34,9 +34,17 @@ class UsersController < ApplicationController
 			render "edit"
 		end
 	end
+	
+	def change_password
+		@user = User.find(params[:id])
+	end
+
+	def update_pass
+		@user = User.find(params[:id])
+
 
 	private 
 	def user_params
-		params.require(:user).permit(:username, :email, :password, :membership, :admin, :active)
+		params.require(:user).permit(:username, :email, :password, :membership, :admin, :active, :confirm_password)
 	end
 end
