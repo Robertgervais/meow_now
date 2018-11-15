@@ -29,7 +29,6 @@
                 <%=link_to 'View Ballots', ballots_path%><br>
                 <%=link_to "New Ballot", new_ballot_path %>
               </div>
-              <button class="btn btn-secondary"> <%= link_to "Change Password", change_password_path(current_user) %>
             </div>
             <li> | </li>
           <% end %>
@@ -39,8 +38,8 @@
                 Admin
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <%=link_to 'Register new user', new_user_path%><br>
-                <%=link_to "All users", users_path %>
+                <%=link_to "All users", users_path %><br>
+                <%=link_to "Awaiting Confirmation", awaiting_confirmation_path%>
               </div>
             </div>
             <li> | </li>

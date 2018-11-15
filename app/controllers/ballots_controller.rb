@@ -26,7 +26,7 @@ class BallotsController < ApplicationController
 		@ballot = Ballot.new(ballot_params)
 		@ballot.user_id = current_user.id
 		if @ballot.save
-			UsersMailer.new_ballot(User.all, @ballot.ballot_issue, @ballot.user.username).deliver
+			UsersMailer.new_ballot(User.all, @ballot.id, @ballot.ballot_issue, @ballot.user.username).deliver
 			redirect_to ballots_path
 		else
 			@ballot.full_error_messages

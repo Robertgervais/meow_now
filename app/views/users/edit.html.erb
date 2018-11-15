@@ -18,6 +18,10 @@
 		<%= f.label :active? %>
 		<%= f.select :active?, [['Yes', true],["No", false]]  %><br>
 	</p>
+		<p>
+		<%= f.label :confirmed %>
+		<%= f.select :confirmed, [['Yes', true],["No", false]]  %><br>
+	</p>
 	<p>
 		<%= f.submit :class => "btn btn-primary" %>
 	</p>

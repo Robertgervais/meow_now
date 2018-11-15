@@ -1,0 +1,10 @@
+<table class="table table-bordered table-striped">
+		<tr>
+			<th>User</td>
+		</tr>
+	<% @users.each do |user| %>
+			<tr>
+				<td><%= link_to "#{user.username}", edit_user_path(user) %></td>
+			</tr>
+	<% end %>
+</table>

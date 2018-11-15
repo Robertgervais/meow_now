@@ -5,14 +5,14 @@ class UsersMailer < ApplicationMailer
 		mail to: @user.email, subject: "Welcome to"
 	end
 
-	def new_ballot(recipients, ballot, creator)
+	def new_ballot(recipients, ballot, ballot_issue, creator)
 	    @recipients = recipients
-	    @ballot = ballot
+	    @ballot_issue = ballot_issue
 	    @creator = creator
-	    @message = "Hey Cats, there's a new ballot on '#{@ballot}'. Please vote!"
+	    @url = "http://cccballot.com/ballots/#{ballot}"
 	    mail(
 	      bcc: @recipients.map(&:email).uniq, 
-	      subject: "New Ballot created by #{@creator}: #{@ballot}"
+	      subject: "New Ballot created by #{@creator}: #{@ballot_issue}"
 	    )
 	end
 end

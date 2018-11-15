@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811233526) do
+ActiveRecord::Schema.define(version: 20181115055206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ballot_emails", force: :cascade do |t|
+    t.integer "ballot_id"
+  end
 
   create_table "ballots", force: :cascade do |t|
     t.text "ballot_issue"
@@ -38,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180811233526) do
     t.string "membership"
     t.datetime "updated_at", null: false
     t.boolean "active"
+    t.boolean "confirmed"
   end
 
   create_table "votes", force: :cascade do |t|

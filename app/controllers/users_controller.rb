@@ -4,7 +4,11 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.all
+		@users = User.where('confirmed' => true).all
+	end
+
+	def awaiting_confirmation
+		@users = User.where('confirmed' => 'false').all
 	end
 
 	def create
@@ -39,12 +43,8 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-	def update_pass
-		@user = User.find(params[:id])
-
-
 	private 
 	def user_params
-		params.require(:user).permit(:username, :email, :password, :membership, :admin, :active, :confirm_password)
+		params.require(:user).permit(:username, :email, :password, :confirmed, :membership, :active)
 	end
 end

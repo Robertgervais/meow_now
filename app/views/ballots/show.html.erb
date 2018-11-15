@@ -4,7 +4,11 @@
 		<div class="col-md-7"></div>
 	</div>
 	<div class="row">
-		<h2 class="col-md-5">Proposed by: <%= "#{@ballot.user.username}"%></h2>
+		<% if @ballot.user %>
+			<h2 class="col-md-5">Proposed by: <%= "#{@ballot.user.username}"%></h2>
+		<% else %>
+			<h2 class="col-md-5">Proposed by: User Deleted</h2>
+		<% end %>
 		<h2 class="col-md-5">Transparency: <%="#{@ballot.ballot_type}"%></h2>
 		<div class="col-md-5"></div>
 	</div>

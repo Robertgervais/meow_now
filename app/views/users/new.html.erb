@@ -20,7 +20,7 @@
 		<%= f.label :password %> <br>
 		<%= f.text_field :password, :class => 'form-control' %> <br>
 	</p>
-	<p>
+<!-- 	<p>
 		<%= f.label :membership_status %>
 		<%= f.select :membership, options_for_select(["A", "B"]) %><br>
 	</p>
@@ -31,7 +31,8 @@
 	<p>
 		<%= f.label :active? %>
 		<%= f.select :active?, [['Yes', true],["No", false]]  %><br>
-	</p>
+	</p> -->
+	<p>
 		<%= f.submit :class => "btn btn-primary" %>
 	</p>
 <% end %>
