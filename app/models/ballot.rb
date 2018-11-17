@@ -1,7 +1,7 @@
 class Ballot < ActiveRecord::Base
 
 	belongs_to :user
-	has_many :votes
+	has_many :votes, :emails
 	before_create :set_expiration_date
 
 	validates :options, presence: true

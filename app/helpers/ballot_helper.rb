@@ -8,4 +8,8 @@ module BallotHelper
 		Ballot.all.select{|ballot| !(ballot.all_expiration_requirements_met?)}
 	end
 
+	def find_expired
+		Ballot.all.select{|ballot| ballot.expired?}
+	end
+
 end

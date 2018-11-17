@@ -1,4 +1,5 @@
 class UsersMailer < ApplicationMailer
+	include BallotHelper
 
 	def signup_confirmation(user)
 		@user = user
@@ -14,5 +15,10 @@ class UsersMailer < ApplicationMailer
 	      bcc: @recipients.map(&:email).uniq, 
 	      subject: "New Ballot created by #{@creator}: #{@ballot_issue}"
 	    )
+	end
+
+	def send_expired
+
+		Ballot.first
 	end
 end
