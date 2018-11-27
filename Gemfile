@@ -49,11 +49,12 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'foreman'
+  gem 'factory_bot_rails'
 end
 
 group :test do
   gem "guard", "~> 2.13.0", require: false
- gem "guard-rspec", "~> 4.6.4", require: false
+  gem "guard-rspec", "~> 4.6.4", require: false
 end
 
 group :development do
