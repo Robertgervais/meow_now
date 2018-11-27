@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'gon'
 
 gem 'jquery-rails'
+gem 'bootstrap'
 
 gem 'figaro'
 
