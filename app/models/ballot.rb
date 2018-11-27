@@ -1,13 +1,18 @@
 class Ballot < ActiveRecord::Base
 
 	belongs_to :user
-	has_many :votes, :emails
+	has_many :votes
 	before_create :set_expiration_date
 
 	validates :options, presence: true
 
+
 	def expired?
 		Time.now > self.expiration
+	end
+
+	def self.send_expired_emails
+		
 	end
 
 	def has_support?
