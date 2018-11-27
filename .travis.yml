@@ -21,7 +21,7 @@ branches:
 before_script:
   - redis-cli info
   - psql -c 'create database meow_now_test'
-  - bundle exec rake db:structure:load
+  - bundle exec rake db:schema:load
 cache:
   bundler: true
 install:
