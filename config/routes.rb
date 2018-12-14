@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+	require 'sidekiq/web'
+	mount Sidekiq::Web => "/sidekiq"
+
 	root 'ballots#index'
 	resources :users
 	resources :ballots do

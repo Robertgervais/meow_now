@@ -1,7 +1,7 @@
 class BallotCheckWorker
   include Sidekiq::Worker
 
-  def perform(*args)
-    # Do something
+  def perform
+    puts "omg"
   end
 end
