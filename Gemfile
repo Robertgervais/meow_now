@@ -7,6 +7,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'sidekiq'
+gem "sidekiq-cron", "~> 0.6.3"
+gem 'sinatra', github: 'sinatra/sinatra'
 gem 'redis'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
