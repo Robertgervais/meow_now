@@ -60,6 +60,28 @@ class BallotsController < ApplicationController
 		end
 	end
 
+	def close
+		@users = User.all
+		@ballot = Ballot.find(params[:format])
+		@ballot.update(votable: false)
+		UsersMailer.close_ballot(@users, @ballot.id, @ballot.ballot_issue).deliver
+		redirect_to ballots_path
+	end
+
+	def send_reminder
+		@users = find_users_that_have_not_voted(params[:format])
+		@ballot_id = params[:format]
+		@ballot = Ballot.find(params[:format])
+		UsersMailer.send_reminder(@users, @ballot.id, @ballot.ballot_issue).deliver
+		redirect_to ballots_path
+	end
+
+	def destroy
+		@ballot = Ballot.find(params[:id])
+		@ballot.destroy
+		redirect_to ballots_path
+	end
+
 	private
 	def ballot_params
 		params.require(:ballot).permit(:ballot_issue, :options, :ballot_type, :content, :include_weekend)

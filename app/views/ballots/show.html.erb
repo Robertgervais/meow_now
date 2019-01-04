@@ -43,9 +43,9 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2">Delete</div>
-		<div class="col-md-2">Send Reminder</div>
-		<div class="col-md-2">Close</div>
+		<div class="col-md-2"><%= link_to 'Delete', @ballot, method: :delete%></div>
+		<div class="col-md-2"><%= link_to 'Send Reminder', send_reminder_path(@ballot) %></div>
+		<div class="col-md-2"><%= link_to 'Close', close_path(@ballot) %></div>
 		<div class="col-md-6"></div>
 	</div>
 </div>

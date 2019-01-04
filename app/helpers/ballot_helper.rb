@@ -5,7 +5,7 @@ module BallotHelper
 	end
 
 	def open_ballots
-		Ballot.all.select{|ballot| !(ballot.all_expiration_requirements_met?)}
+		Ballot.all.select{|ballot| !(ballot.all_expiration_requirements_met?) && ballot.votable}
 	end
 
 	def find_expired

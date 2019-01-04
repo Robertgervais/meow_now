@@ -17,8 +17,26 @@ class UsersMailer < ApplicationMailer
 	    )
 	end
 
-	def send_expired
-
-		Ballot.first
+	def send_reminder(recipients, ballot_id, ballot_issue)
+		@recipients = recipients
+		@ballot_id = ballot_id
+		@ballot_issue = ballot_issue
+		@url = "http://cccballot.com/ballots/#{ballot_id}"
+		mail(
+			bcc: @recipients.map(&:email).uniq,
+			subject: "Please vote on #{@ballot_issue}"
+		)
+	end
+	def close_ballot(recipients, ballot, ballot_issue)
+		@recipients = recipients
+		p "!!!!"
+		p @recipients
+		p "!!!!!"
+		@ballot_issue = ballot_issue
+		@url = "http://cccballot.com/ballots/#{ballot}"
+		mail(
+      bcc: @recipients.map(&:email).uniq, 
+      subject: "Ballot Closed: #{@ballot_issue}"
+	  )
 	end
 end

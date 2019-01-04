@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 	delete 'logout', to: 'sessions#destroy'
 	post 'support/:id', to: 'ballots#add_support', as: :support
 	get 'awaiting_confirmation', to: "users#awaiting_confirmation"
+	get 'send_reminder', to: 'ballots#send_reminder', as: :send_reminder
+	get 'close', to: 'ballots#close', as: :close
 end
