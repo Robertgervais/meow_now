@@ -9,7 +9,7 @@
 	<%= f.submit "Cast Vote"%>
 <% end %>
 	<% elsif !@ballot.all_expiration_requirements_met? && !@ballot.has_support? %>
-		<%= link_to "Support this ballot?!?!?", support_path(:ballot_id => "#{@ballot.id}"), :method => :post %>
+		<%= link_to "Support this ballot?!?!?", support_path(:ballot_id => "#{@ballot.id}"), :method => :post, :class => "btn btn-info" %>
 	<% else %>
 		<p> Ballot Closed </p>
 <%end %>

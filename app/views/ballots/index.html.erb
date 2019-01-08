@@ -11,21 +11,21 @@
 <% @ballots.each do |ballot| %>
 	<tr>
 		<% if ballot.user %>
-			<td><%=ballot.user.username %></td>
+			<td class="bg-light"><%=ballot.user.username %></td>
 		<% else %>
-			<td>User Deleted</td>
+			<td class="bg-light">User Deleted</td>
 		<% end %>
-		<td><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
-		<td><%=ballot.ballot_type %></td>
-		<td><%=ballot.created_at.to_formatted_s %></td>
+		<td class="bg-light"><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
+		<td class="bg-light"><%=ballot.ballot_type %></td>
+		<td class="bg-light"><%=ballot.created_at.to_formatted_s %></td>
 		<% if ballot.votable == false %>
-		 <td> Ballot Closed </td>
+		 <td class="bg-info"> Ballot Closed </td>
 		<% elsif ballot.all_expiration_requirements_met? %>
-			<td>Ballot Ready to be Closed</td>
+			<td class="bg-warning">Ready to be Closed</td>
 		<% elsif ballot.expired? && ballot.votable %>
-			<td> Expired but awaiting Votes</td>
+			<td class="bg-danger"> Expired but awaiting Votes</td>
 		<% else %>
-			<td> Active </td>
+			<td class="bg-success"> Active </td>
 		<% end %>
 	</tr>
 <% end %>

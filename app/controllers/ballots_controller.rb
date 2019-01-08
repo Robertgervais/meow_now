@@ -5,7 +5,7 @@ class BallotsController < ApplicationController
 
 	def index
 		if logged_in
-			@ballots = Ballot.all
+			@ballots = Ballot.all.order("created_at desc")
 			@open_ballots = open_ballots
 		else 
 			redirect_to login_path

@@ -1,4 +1,4 @@
-<p> Voters: <p>
+<p> Members: <p>
 		<ul>
 		<% @ballot.voters_with_choice.each do |voter, choice| %>
 			<li><%= voter.username %>: <%= choice %> </li>

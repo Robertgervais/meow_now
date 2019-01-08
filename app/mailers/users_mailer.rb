@@ -29,9 +29,6 @@ class UsersMailer < ApplicationMailer
 	end
 	def close_ballot(recipients, ballot, ballot_issue)
 		@recipients = recipients
-		p "!!!!"
-		p @recipients
-		p "!!!!!"
 		@ballot_issue = ballot_issue
 		@url = "http://cccballot.com/ballots/#{ballot}"
 		mail(
