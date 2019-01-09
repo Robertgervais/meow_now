@@ -17,7 +17,7 @@
 		<% end %>
 		<td class="bg-light"><%=link_to "#{ballot.ballot_issue}", ballot_path(ballot) %></td>
 		<td class="bg-light"><%=ballot.ballot_type %></td>
-		<td class="bg-light"><%=ballot.created_at.to_formatted_s %></td>
+		<td class="bg-light"><%=ballot.created_at%></td>
 		<% if ballot.votable == false %>
 		 <td class="bg-info"> Ballot Closed </td>
 		<% elsif ballot.all_expiration_requirements_met? %>
