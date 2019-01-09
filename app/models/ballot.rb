@@ -8,7 +8,7 @@ class Ballot < ActiveRecord::Base
 
 
 	def expired?
-		Time.now < self.expiration
+		Time.now > self.expiration
 	end
 
 	def has_support?
