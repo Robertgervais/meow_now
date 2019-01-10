@@ -31,16 +31,3 @@
 <% end %>
 </table>
 </div>
-
-<% if current_user_is_admin %>
-	<table class="table table-bordered table-striped">
-		<tr>
-			<th>Pending Ballots</td>
-		</tr>
-	<% @open_ballots.each do |ballot| %>
-		<tr>
-			<td><%=link_to "#{ballot.ballot_issue}", pending_path(ballot)%></td>
-		</tr>
-	<% end %>
-	</table>
-<% end %>

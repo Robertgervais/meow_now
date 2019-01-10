@@ -48,7 +48,9 @@ class Ballot < ActiveRecord::Base
 
 	def tally
 		tallied_votes = Hash.new
-		if too_many_b_members
+		if how_many("A") == 0
+				tallied_votes[""] = ""
+		elsif too_many_b_members
 			get_options.each do |option|
 				tallied_votes.store[option] = get_results_count(option)
 			end
@@ -63,7 +65,7 @@ class Ballot < ActiveRecord::Base
 	def how_many(membership)
 		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count
 	end
-	private
+	# private
 	def set_expiration_date
 		if self.include_weekend
 			self.expiration = DateTime.now + 96.hours
@@ -81,7 +83,7 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def get_b_weight
-		(how_many("A") / 4) / how_many("B").to_f
+		(how_many("A") / 4)  / how_many("B").to_f
 	end
 	
 	

@@ -7,7 +7,7 @@ class VotesController < ApplicationController
 
 	def create
 		@ballot = Ballot.find(params[:ballot_id])
-		@vote = @ballot.votes.new(user_vote: params[:cast_vote])
+		@vote = @ballot.votes.new(vote_params)
 		@vote.user_id = current_user.id
 		if !current_user.votes.find_by(ballot_id: params[:ballot_id])
 			@vote.save
@@ -19,5 +19,9 @@ class VotesController < ApplicationController
 	end
 
 	def support
+	end
+	private
+	def vote_params
+		params.require(:vote).permit(:user_vote, :comment)
 	end
 end

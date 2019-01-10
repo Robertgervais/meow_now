@@ -1,14 +1,15 @@
 <div class="col-md-7"></div>
 <div class="col-md-5">
-	<% if !@ballot.all_expiration_requirements_met? && @ballot.has_support? %>
+	<% if @ballot.has_support? && @ballot.votable %>
 		<%= form_for :vote, url: ballot_votes_path(@ballot) do |f| %>
 			<% @radio.each do |option| %>
-				<%= radio_button_tag(:cast_vote, "#{option.strip}") %>
+				<%= radio_button_tag(:user_vote, "#{option.strip}") %>
 				<%= label_tag(:option, "#{option.strip}") %>
-	<% end %>
+	<% end %><br>
+	<%= f.text_field :comment, :size => "50", placeholder: "Comment?" %>
 	<%= f.submit "Cast Vote"%>
 <% end %>
-	<% elsif !@ballot.all_expiration_requirements_met? && !@ballot.has_support? %>
+	<% elsif !@ballot.has_support? && @ballot.votable %>
 		<%= link_to "Support this ballot?!?!?", support_path(:ballot_id => "#{@ballot.id}"), :method => :post, :class => "btn btn-info" %>
 	<% else %>
 		<p> Ballot Closed </p>

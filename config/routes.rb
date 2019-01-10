@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	resources :ballots do
 		resources :votes
 	end
+	get 'pending_index', to: 'ballots#pending_index', as: :pending_index
 	get 'pending/:id', to: 'ballots#pending', as: :pending
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'

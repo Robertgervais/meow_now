@@ -26,7 +26,10 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <%=link_to 'View Ballots', ballots_path%><br>
-                <%=link_to "New Ballot", new_ballot_path %>
+                <%=link_to "New Ballot", new_ballot_path %><br>
+                <% if current_user_is_admin %>
+                  <%= link_to "Pending Ballots", pending_index_path %>
+                <% end %>
               </div>
             </div>
             <li> | </li>

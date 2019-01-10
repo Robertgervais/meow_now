@@ -1,0 +1,16 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Pending Ballots</td>
+  </tr>
+      <% if @open_ballots.empty? %>
+        <tr>
+         <td>No pending ballots! Nice.</td>
+        </tr>
+      <% else %>
+        <% @open_ballots.each do |ballot| %>
+            <tr>
+              <td><%=link_to "#{ballot.ballot_issue}", pending_path(ballot)%></td>
+            </tr>
+        <% end %>
+      <% end %>
+</table>

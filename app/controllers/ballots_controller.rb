@@ -37,6 +37,10 @@ class BallotsController < ApplicationController
 	def edit
 	end
 
+	def pending_index
+		@open_ballots = open_ballots
+	end
+	
 	def pending
 		@users = find_users_that_have_not_voted(params[:id])
 	end
