@@ -6,7 +6,8 @@
 				<%= radio_button_tag(:user_vote, "#{option.strip}") %>
 				<%= label_tag(:option, "#{option.strip}") %>
 	<% end %><br>
-	<%= f.text_field :comment, :size => "50", placeholder: "Comment?" %>
+				<%= f.label :comment %> <br>
+			<%= f.text_field :comment, :class => 'form-control', :size => "50" %> <br>
 	<%= f.submit "Cast Vote"%>
 <% end %>
 	<% elsif !@ballot.has_support? && @ballot.votable %>

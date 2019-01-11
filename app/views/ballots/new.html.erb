@@ -15,7 +15,7 @@
 		<%= f.text_field :options, :class => 'form-control col-md-4' %>
 		<%= f.label :ballot_type %>
 		<%= f.select :ballot_type, options_for_select(["Public", "Private"]) %><br>
-		<%= f.label :will_ballot_duration_include_weekends %>
+		<%= f.label :will_ballot_duration_include_weekends? %>
 		<%= f.select :include_weekend, [['Yes', true],["No", false]] %>
 	</p>
 

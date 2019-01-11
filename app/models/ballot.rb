@@ -40,7 +40,8 @@ class Ballot < ActiveRecord::Base
 	def voters_with_choice
 		combo = Hash.new
 		voters.each do |voter|
-			combo[voter] = self.votes.find_by(user_id: voter.id).user_vote
+			@vote = self.votes.find_by(user_id: voter.id)
+			combo[voter] = [@vote.user_vote, @vote.comment]
 		end
 		combo
 	end
@@ -50,7 +51,7 @@ class Ballot < ActiveRecord::Base
 		tallied_votes = Hash.new
 		if how_many("A") == 0
 				tallied_votes[""] = ""
-		elsif too_many_b_members
+		elsif not_enough_b_members
 			get_options.each do |option|
 				tallied_votes.store[option] = get_results_count(option)
 			end
@@ -63,9 +64,10 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def how_many(membership)
-		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count.to_f
 	end
-	# private
+	
+	private
 	def set_expiration_date
 		if self.include_weekend
 			self.expiration = DateTime.now + 96.hours
@@ -83,7 +85,7 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def get_b_weight
-		(how_many("A") / 4)  / how_many("B").to_f
+		((how_many("A") / 4)/(how_many("B"))).to_f
 	end
 	
 	
@@ -107,7 +109,7 @@ class Ballot < ActiveRecord::Base
 		count
 	end
 
-	def too_many_b_members
+	def not_enough_b_members
 		if how_many("B") > 0
 			(how_many("B") / how_many("A")).to_f < 0.2
 		else

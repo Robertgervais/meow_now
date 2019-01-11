@@ -7,7 +7,7 @@ class VotesController < ApplicationController
 
 	def create
 		@ballot = Ballot.find(params[:ballot_id])
-		@vote = @ballot.votes.new(vote_params)
+		@vote = @ballot.votes.new(user_vote: params[:user_vote], comment: params[:vote][:comment])
 		@vote.user_id = current_user.id
 		if !current_user.votes.find_by(ballot_id: params[:ballot_id])
 			@vote.save
