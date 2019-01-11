@@ -31,6 +31,10 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		p"!!!!!!!!!!!!!"
+		p params
+		p user_params
+		p "!!!!!!!!!!"
 		@user = User.find(params[:id])
 		if @user.update(user_params)
 			redirect_to users_path
@@ -45,6 +49,6 @@ class UsersController < ApplicationController
 
 	private 
 	def user_params
-		params.require(:user).permit(:username, :email, :password, :confirmed, :membership, :active)
+		params.require(:user).permit(:username, :email, :password, :confirmed, :membership, :active, :admin)
 	end
 end
