@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'honeybadger'
+
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.6.3"
 gem 'sinatra', github: 'sinatra/sinatra'
