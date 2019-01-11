@@ -4,7 +4,7 @@
 		<%= form_for :vote, url: ballot_votes_path(@ballot) do |f| %>
 			<% @radio.each do |option| %>
 				<%= radio_button_tag(:user_vote, "#{option.strip}") %>
-				<%= label_tag(:option, "#{option.strip}") %>
+				<%= label_tag(:option, "#{option.strip}") %><br>
 	<% end %><br>
 				<%= f.label :comment %> <br>
 			<%= f.text_field :comment, :class => 'form-control', :size => "50" %> <br>
