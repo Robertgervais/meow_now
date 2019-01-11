@@ -15,9 +15,13 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <% if logged_in %>
+          <% if !logged_in %>
             <button class="nav-item btn btn-secondary">
-              <%=link_to "Logout", logout_path, :method => :delete %>
+              <%=link_to "Register",new_user_path%>
+            </button>
+          <% elsif logged_in %>
+            <button class="nav-item btn btn-secondary">
+              <%=link_to "Logout", logout_path, :method => :delete%>
             </button>
             <li> | </li>
             <div class="dropdown">

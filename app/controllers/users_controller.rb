@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.where('confirmed' => true).all
+		@users = User.where('confirmed' => true).all.order("username asc")
 	end
 
 	def awaiting_confirmation

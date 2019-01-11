@@ -64,7 +64,7 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def how_many(membership)
-		ballot_votes.select{|vote| vote.user.membership == "#{membership}"}.count.to_f
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}" && vote.user.active == true}.count.to_f
 	end
 	
 	private
@@ -122,7 +122,7 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def enough_votes?
-		(how_many("A") / User.all.select{|user| user.membership == "A"}.count).to_f >= 0.75
+		(how_many("A") / User.all.select{|user| user.membership == "A" && user.active == true}.count).to_f >= 0.75
 	end
 
 end

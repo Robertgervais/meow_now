@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: user_params[:email].downcase)
     if @user && @user.authenticate(user_params[:password]) && @user.confirmed
         login_user
-        redirect_to user_path(@user)
+        redirect_to ballots_path
     else
       flash[:alert] = "Login failed"
       @errors = ["That combination of username and password can't be found"]
