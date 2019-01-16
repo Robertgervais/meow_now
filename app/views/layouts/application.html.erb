@@ -38,14 +38,16 @@
             </div>
             <li> | </li>
           <% end %>
-          <% if logged_in && current_user_is_admin %>
+          <% if logged_in %>
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Admin
+                Members
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <%=link_to "All users", users_path %><br>
-                <%=link_to "Awaiting Confirmation", awaiting_confirmation_path%>
+                <%=link_to "All Members", users_path %><br>
+                <%if current_user_is_admin %>
+                  <%=link_to "Awaiting Confirmation", awaiting_confirmation_path%>
+                <%end %>
               </div>
             </div>
             <li> | </li>

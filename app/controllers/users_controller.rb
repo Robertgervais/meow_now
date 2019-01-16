@@ -1,14 +1,24 @@
 class UsersController < ApplicationController
+include SessionsHelper
+
 	def new
 		@user = User.new
 	end
 
 	def index
-		@users = User.where('confirmed' => true).all.order("username asc")
+		if logged_in
+			@users = User.where('confirmed' => true).all.order("username asc")
+		else
+			redirect_to 'login'
+		end
 	end
 
 	def awaiting_confirmation
-		@users = User.where('confirmed' => 'false').all
+		if current_user_is_admin
+			@users = User.where('confirmed' => 'false').all
+		else
+			redirect_to 'login'
+		end
 	end
 
 	def create
