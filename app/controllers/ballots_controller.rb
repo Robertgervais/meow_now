@@ -13,24 +13,30 @@ class BallotsController < ApplicationController
 	end
 
 	def show
-		@ballot= Ballot.find(params[:id])
-		@radio = @ballot.options.split(",")
-		@results = @ballot.tally
+		if logged_in
+			@ballot= Ballot.find(params[:id])
+			@radio = @ballot.options.split(",")
+			@results = @ballot.tally
+		end
 	end
 
 	def new
-		@ballot = Ballot.new
+		if logged_in
+			@ballot = Ballot.new
+		end
 	end
 
 	def create
-		@ballot = Ballot.new(ballot_params)
-		@ballot.user_id = current_user.id
-		if @ballot.save
-			UsersMailer.new_ballot(User.all, @ballot.id, @ballot.ballot_issue, @ballot.user.username).deliver
-			redirect_to ballots_path
-		else
-			@ballot.full_error_messages
-			redirect_to new_ballot_path
+		if logged_in
+			@ballot = Ballot.new(ballot_params)
+			@ballot.user_id = current_user.id
+			if @ballot.save
+				UsersMailer.new_ballot(User.all, @ballot.id, @ballot.ballot_issue, @ballot.user.username).deliver
+				redirect_to ballots_path
+			else
+				@ballot.full_error_messages
+				redirect_to new_ballot_path
+			end
 		end
 	end
 

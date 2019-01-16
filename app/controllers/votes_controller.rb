@@ -13,7 +13,7 @@ class VotesController < ApplicationController
 			@vote.save
 			redirect_to ballot_path(params[:ballot_id])	
 		else
-			flash[:alert] = "You've already voted on this ballot"
+			flash[:error] = @ballot.errors.full_messages.to_sentence
 			redirect_to ballot_path(params[:ballot_id])
 		end
 	end
