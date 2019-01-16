@@ -5,7 +5,10 @@
 			<% @radio.each do |option| %>
 				<%= radio_button_tag(:user_vote, "#{option.strip}") %>
 				<%= label_tag(:option, "#{option.strip}") %><br>
-	<% end %><br>
+	<% end %>
+				<%= radio_button_tag(:user_vote, "Stand Aside") %>
+				<%= label_tag(:option, "Stand Aside") %><br>
+	<br>
 				<%= f.label :comment %> <br>
 			<%= f.text_field :comment, :class => 'form-control', :size => "50" %> <br>
 	<%= f.submit "Cast Vote"%>
