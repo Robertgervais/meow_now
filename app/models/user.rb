@@ -13,7 +13,7 @@ class User < ApplicationRecord
 		self.email.downcase!
 	end
 	def default_values
-    	self.confirmed ||= false
-  	end
+    self.confirmed ||= false
+  end
 
 end

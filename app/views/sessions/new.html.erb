@@ -2,18 +2,19 @@
 	<%= form_for :user, url:login_path do |f| %>
 		<% if @user.errors.any? %>
 			<% @user.errors.full_messages.each do |error| %>
-				<div class="alert alert-danger"><%=error %> </div>
+				<p class="alert alert-danger">
+					<%= error %>
 			<% end %>
 		<% end %>
-		<p>
+		<div class="form-group">
 			<%= f.label :email %> <br>
 			<%= f.text_field :email, :class => 'form-control col-md-2' %> <br>
-		</p>
+		</div>
 
-		<p>
+		<div class="form-group">
 			<%= f.label :password %> <br>
-			<%= f.text_field :password, :class => 'form-control col-md-2'%>
-		</p>
+			<%= f.password_field :password , :class => 'form-control col-md-2'%>
+		</div>
 		<p>
 			<%= f.submit "Login", :class => "btn btn-primary"%>
 		</p>

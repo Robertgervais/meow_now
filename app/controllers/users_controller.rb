@@ -13,6 +13,9 @@ include SessionsHelper
 		end
 	end
 
+	def committee
+	end
+
 	def awaiting_confirmation
 		if current_user_is_admin
 			@users = User.where('confirmed' => 'false').all

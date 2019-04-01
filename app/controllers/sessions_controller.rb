@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   include SessionsHelper
-  
+
   def index
   end
 
@@ -9,6 +9,9 @@ class SessionsController < ApplicationController
 	end
 
   def create
+    p "!!!!"
+    p user_params
+    p "!!!!!!"
     @user = User.find_by(email: user_params[:email].downcase)
     if @user && @user.authenticate(user_params[:password]) && @user.confirmed
         login_user
