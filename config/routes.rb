@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :models
 	require 'sidekiq/web'
 	mount Sidekiq::Web => "/sidekiq"
 
