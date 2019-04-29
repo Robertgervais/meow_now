@@ -1,0 +1,33 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title CutCats
+    = stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.admin-navbar
+      %ul.navbar-nav
+        %li.nav-item
+          = link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link"
+        %li.dropdown.nav-item
+          %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
+            Ballots
+          .dropdown-menu.admin-nav-dropdown
+            = link_to "New Ballots", new_ballot_path, class: "btn btn-light dropdown-item"
+            = link_to "All Ballots", ballots_path, class: "btn btn-light dropdown-item"
+        %li.dropdown.nav-item
+          %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
+            Members
+          .dropdown-menu.admin-nav-dropdown
+            = link_to "All Members", users_path, class: "btn btn-light dropdown-item"
+            = link_to "Committee members", committee_path, class: "btn btn-light dropdown-item"
+    - if flash[:alert]
+      #alert
+        = flash[:alert]
+    %p.notice= notice
+    %p.alert= alert
+    .container
+      = yield

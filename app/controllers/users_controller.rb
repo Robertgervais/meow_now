@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if logged_in
+    if user_signed_in?
       @users = User.where("confirmed" => true).all.order("username asc")
     else
       redirect_to "login"
