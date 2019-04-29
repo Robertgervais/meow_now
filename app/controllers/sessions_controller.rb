@@ -4,18 +4,15 @@ class SessionsController < ApplicationController
   def index
   end
 
-	def new
-		@user = User.new
-	end
+  def new
+    @user = User.new
+  end
 
   def create
-    p "!!!!"
-    p user_params
-    p "!!!!!!"
     @user = User.find_by(email: user_params[:email].downcase)
     if @user && @user.authenticate(user_params[:password]) && @user.confirmed
-        login_user
-        redirect_to ballots_path
+      login_user
+      redirect_to ballots_path
     else
       flash[:alert] = "Login failed"
       @errors = ["That combination of username and password can't be found"]
@@ -23,13 +20,14 @@ class SessionsController < ApplicationController
     end
   end
 
-	def destroy
+  def destroy
     logout_user
     redirect_to login_path
-	end
+  end
 
-private
+  private
+
   def user_params
-      params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password)
   end
 end
