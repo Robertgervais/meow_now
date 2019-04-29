@@ -1,0 +1,17 @@
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      User
+    %th Membership
+    %th Admin?
+  - @users.each do |user|
+    %tr
+      - if current_user_is_admin
+        %td= link_to "#{user.username}", edit_user_path(user)
+      - else
+        %td= "#{user.username}"
+      %td= user.membership
+      - if user.admin
+        %td Yes
+      - else
+        %td No

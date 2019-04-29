@@ -1,0 +1,28 @@
+%h1 Ballots
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Ballot Author
+    %th
+      Issue
+    %th Transparency
+    %th Created At
+    %th
+      Active?
+  - @ballots.each do |ballot|
+    %tr
+      - if ballot.user
+        %td.bg-light= ballot.user.username
+      - else
+        %td.bg-light User Deleted
+      %td.bg-light= link_to "#{ballot.ballot_issue}", ballot_path(ballot)
+      %td.bg-light= ballot.ballot_type
+      %td.bg-light= ballot.created_at
+      - if ballot.votable == false
+        %td.bg-info Ballot Closed
+      - elsif ballot.all_expiration_requirements_met?
+        %td.bg-warning Ready to be Closed
+      - elsif ballot.expired? && ballot.votable
+        %td.bg-danger Expired but awaiting Votes
+      - else
+        %td.bg-success Active
