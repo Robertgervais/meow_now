@@ -1,0 +1,13 @@
+%table.table.table-bordered.table-striped.table-sm
+  %thead.thead-light
+    %tr
+      %th
+        User
+      %th
+        When
+  - @users.each do |user|
+    %tr
+      %td
+        = link_to user.username, edit_user_path(user)
+      %td
+        = user.created_at

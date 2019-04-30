@@ -1,0 +1,35 @@
+%h1
+  New ballot
+
+.card.bg-light
+  .card-body
+    = form_for :ballot, url:ballots_path do |f|
+      - if @ballot.errors.any?
+        - @ballot.errors.full_messages.each do |error|
+          .alert.alert-danger
+            = error
+      .row
+        .col-md-6
+          .form-group
+            = f.label :ballot_issue
+            = f.text_field :ballot_issue, :class => 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :content
+            = f.text_area :content, :class => 'form-control'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :options, "Options (Please separate with commas)"
+            = f.text_field :options, :class => 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :ballot_type
+            = f.select :ballot_type, options_for_select(["Public", "Private"]), {}, class: "form-control"
+      .row
+        .col-md-6
+          .form-group
+            = f.label :will_ballot_duration_include_weekends?
+            = f.select :include_weekend, [['Yes', true],["No", false]], {}, class: "form-control"
+        .col-md-6.align-self-center
+          = f.submit :class => "btn btn-primary"

@@ -1,15 +1,13 @@
 class UsersController < ApplicationController
-  include SessionsHelper
-
   def new
     @user = User.new
   end
 
   def index
     if user_signed_in?
-      @users = User.where("confirmed" => true).all.order("username asc")
+      @users = User.where(active: true)
     else
-      redirect_to "login"
+      redirect_to user_session_path
     end
   end
 
@@ -17,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def awaiting_confirmation
-    if current_user_is_admin
+    if current_user.admin
       @users = User.where("confirmed" => "false").all
     else
       redirect_to "login"

@@ -1,0 +1,11 @@
+%table.table.table-bordered.table-striped
+  %tr
+    %th Member
+    %th Vote
+    %th Comment
+  %tr
+    - @ballot.voters_with_choice.each do |voter, choice|
+      %tr
+        %td.bg-light= voter.username
+        %td.bg-light= choice[0]
+        %td.bg-light= choice[1]

@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20190429201140) do
     t.string "user_vote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "comment"
+    t.string "comment", default: nil
   end
-
 end
