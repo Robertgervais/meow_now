@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   devise_for :user
   resources :ballots
+  resources :roles
   post "support/:id", to: "ballots#add_support", as: :support
   get "send_reminder", to: "ballots#send_reminder", as: :send_reminder
   get "pending_index", to: "ballots#pending_index", as: :pending_index

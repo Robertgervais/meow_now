@@ -8,7 +8,10 @@
   - @users.each do |user|
     %tr
       %td
-        = user.username
+        - if current_user.admin
+          = link_to user.username, edit_user_path(user)
+        - else
+          = user.username
       %td
         = user.membership
       - if user.admin

@@ -32,7 +32,12 @@
               .dropdown-menu.admin-nav-dropdown
                 = link_to "Awaiting members", awaiting_confirmation_path, class: "btn btn-light dropdown-item"
                 = link_to "Pending ballots", pending_index_path, class: "btn btn-light dropdown-item"
-                = link_to "Roles", "#", class: "btn btn-light dropdown-item"
+            %li.dropdown.nav-item
+              %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
+                Roles
+              .dropdown-menu.admin-nav-dropdown
+                = link_to "Roles", roles_path, class: "btn btn-light dropdown-item"
+                = link_to "Create new role", new_role_path, class: "btn btn-light dropdown-item"
     %p.alert= alert
     .container
       = yield

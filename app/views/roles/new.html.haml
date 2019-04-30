@@ -1,0 +1,21 @@
+%h1
+  New role
+
+.card.bg-light
+  .card-body
+    = form_for :role, url: roles_path do |f|
+      - if @role.errors.any?
+        - @role.errors.full_messages.each do |error|
+          .alert.alert-danger
+            = error
+      .row
+        .col-md-6
+          .form-group
+            = f.label :name
+            = f.text_field :name, :class => 'form-control'
+        .col-md-6
+          .form-group
+            = f.label :description
+            = f.text_area :description, rows: 10,:class => 'form-control'
+        .col-md-6.align-self-center
+          = f.submit :class => "btn btn-primary"
