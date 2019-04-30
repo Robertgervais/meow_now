@@ -90,10 +90,10 @@ Rails.application.configure do
     :authentication => "plain",
     :enable_starttls_auto => true,
   }
-end
 
-if ENV["RAILS_LOG_TO_STDOUT"].present?
-  logger = ActiveSupport::Logger.new(STDOUT)
-  logger.formatter = config.log_formatter
-  config.logger = ActiveSupport::TaggedLogging.new(logger)
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    logger = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+  end
 end
