@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :votes
   has_many :ballots
+  has_many :roles
 
   def downcase_email
     self.email.downcase!
