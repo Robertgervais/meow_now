@@ -30,6 +30,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -72,6 +73,15 @@ Rails.application.configure do
     :user_name => ENV["SENDGRID_USERNAME"],
     :password => ENV["SENDGRID_API_KEY"],
     :authentication => "plain",
+    :enable_starttls_auto => true,
+  }
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV["SENDGRID_USERNAME"],
+    :password => ENV["SENDGRID_API_KEY"],
+    :domain => "cccballot.com",
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
     :enable_starttls_auto => true,
   }
 end
