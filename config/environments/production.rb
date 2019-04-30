@@ -82,14 +82,15 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
+    :address => "smtp.sendgrid.net",
     :port => "587",
     :domain => "cccballot.com",
     :user_name => ENV["gmail_username"],
     :password => ENV["gmail_password"],
     :authentication => "plain",
-    :enable_starttls_auto => true
-  } 
+    :enable_starttls_auto => true,
+  }
+end
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
