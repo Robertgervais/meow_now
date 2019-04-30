@@ -1,0 +1,38 @@
+%h1 Edit User
+= form_for @user, url: user_path do |f|
+  - if @user.errors.any?
+    - @user.errors.full_messages.each do |error|
+      .alert.alert-danger
+        = error
+  .row
+    .col-md-6
+      .form-group
+        = f.label :membership_status
+        = f.select :membership, options_for_select(["A", "B"]), {}, class: "form-control"
+    .col-md-6
+      .form-group
+        = f.label :admin?
+        = f.select :admin, [['Yes', true],["No", false]], {}, class: "form-control"
+  .row
+    .col-md-6
+      .form-group
+        = f.label :active?
+        = f.select :active?, [['Yes', true],["No", false]], {}, class: "form-control"
+    .col-md-6
+      .form-group
+        = f.label :confirmed
+        = f.select :confirmed, [['Yes', true],["No", false]], {}, class: "form-control"
+  .row.mt-4
+    .col-md-6
+      %h2
+        Assign Roles
+      .form-group
+        = f.label :user_role, "Roles"
+        = f.collection_select :user_roles, Role.all, :id, :name, {:include_blank => "Select roles. Hold shift to select multiple"}, {:multiple => true, class: "form-control"}
+  .row
+
+
+
+
+  .form-group
+    = f.submit :class => "btn btn-primary"
