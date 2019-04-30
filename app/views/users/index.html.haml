@@ -3,8 +3,13 @@
     %tr
       %th
         User
-      %th Membership
-      %th Admin?
+      %th
+        Membership
+      %th
+        Admin?
+      - if current_user.admin
+        %th
+          Remove Roles
   - @users.each do |user|
     %tr
       %td
@@ -20,3 +25,10 @@
       - else
         %td
           No
+      - if current_user.admin
+        - if user.user_roles.any?
+          %td
+            = link_to "Remove Roles", remove_roles_path(user)
+        - else
+          %td
+            User has no roles

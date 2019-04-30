@@ -1,0 +1,10 @@
+%h1
+  Remove Roles
+.form-group.card.bg-light
+  .card-body
+    = form_for :user_role, url: { controller: :user_roles, action: :destroy, params: {id: @user.id}}, method: :delete do |f|
+      = collection_check_boxes :user, :role_ids, @roles, :id, :name do |cb|
+        .form-check
+          = cb.check_box class: "form-check-input", checked: false
+          = cb.label class: "form-check-label"
+      = f.submit "Remove roles from user", class: "btn btn-danger mt-4"

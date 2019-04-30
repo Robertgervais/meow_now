@@ -23,9 +23,12 @@
         = f.label :confirmed
         = f.select :confirmed, [['Yes', true],["No", false]], {}, class: "form-control"
   .row.mt-4
-    .col-auto
+    .col-md-6
       %h2
         Assign Roles
+      .form-group
+        = f.label :user_role, "Roles"
+        = f.collection_select :user_roles, Role.all, :id, :name, {:include_blank => "Select roles. Hold shift to select multiple"}, {:multiple => true, class: "form-control"}
   .row
 
 

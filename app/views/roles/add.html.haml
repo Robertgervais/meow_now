@@ -1,0 +1,6 @@
+%h2
+  Assign Roles
+= form_for :user_role, user_role_path
+.form-group
+  = f.label :role, "Roles"
+  = f.collection_select :user_roles, Role.all, :id, :name, {:include_blank => "Select roles. Hold shift to select multiple"}, {:multiple => true, class: "form-control"}

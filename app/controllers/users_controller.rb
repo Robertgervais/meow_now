@@ -11,9 +11,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def committee
-  end
-
   def awaiting_confirmation
     if current_user.admin
       @users = User.where("confirmed" => "false").all
@@ -39,12 +36,14 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @roles = Role.all
   end
 
   def update
+    usable_params = user_params.except(:user_roles)
+    p usable_params
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update_attributes(usable_params)
+      update_roles(@user)
       redirect_to users_path
     else
       render "edit"
@@ -58,6 +57,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :confirmed, :membership, :active, :admin)
+    params.require(:user).permit(:username, :email, :password, :confirmed, :membership, :active, :admin, { :user_roles => [] })
+  end
+
+  def update_roles(user)
+    params[:user][:user_roles][1..-1].each do |role|
+      if !UserRole.find_by(user_id: user.id, role_id: role.to_i)
+        user.user_roles.create(role_id: role.to_i)
+      end
+    end
   end
 end

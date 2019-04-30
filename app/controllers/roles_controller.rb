@@ -16,6 +16,10 @@ class RolesController < ApplicationController
     end
   end
 
+  def committee
+    @roles = Role.all
+  end
+
   private
 
   def role_params

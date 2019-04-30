@@ -1,0 +1,24 @@
+%h1
+  Committee Members -
+
+
+%table.table.table-bordered.table-striped
+  %thead.thead-light
+    %tr
+      %th
+        Committee
+      %th
+        Members
+    - @roles.each do |role|
+      %tr
+        %td
+          = role.name
+          |
+          = role.description
+        %td
+          %ul.list-unstyled
+            - role.users.each do |user|
+              %li
+                = user.username
+                |
+                = user.email
