@@ -16,6 +16,7 @@ class BallotsController < ApplicationController
       @ballot = Ballot.find(params[:id])
       @radio = @ballot.options.split(",")
       @results = @ballot.tally
+      @comments = find_comments(@ballot)
     end
   end
 

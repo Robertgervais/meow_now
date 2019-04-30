@@ -1,0 +1,65 @@
+.row
+  .col-md-6
+    %h1
+      = @ballot.ballot_issue
+.row
+  .col-md-6
+    - if @ballot.user
+      %h2
+        Proposed by: #{"#{@ballot.user.username}"}
+    - else
+      %h2
+        Proposed by: User Deleted
+  .col-md-5
+    %strong
+      Transparency: #{"#{@ballot.ballot_type}"}
+.row
+  .col-auto
+    = @ballot.support
+.row.mb-4.mt-4
+  .col-md-6
+    .card.bg-light
+      .card-body
+        = @ballot.content.gsub(/\n/, '<br />').html_safe
+  .col-md-6
+    = render partial: "support_or_vote"
+- if current_user == @ballot.user || current_user_is_admin
+  .row
+    .col-md-2
+      = link_to 'Send Reminder', send_reminder_path(@ballot), :class => "btn btn-primary"
+    .col-md-2
+      = link_to 'Close', close_path(@ballot), :class => "btn btn-primary"
+    .col-md-2
+      = link_to 'Delete', @ballot, method: :delete, :class => "btn btn-danger"
+  %br/
+.row
+  .col-auto
+    %p
+      Vote Results:
+.row
+  .col-auto
+    %ul.list-unstyled
+      - @results.each do |key, value|
+        - if !value.empty?
+          %li
+            = "#{key}: #{value}"
+
+- if @ballot.ballot_type == "Public"
+  = render partial: "public", object: @ballots
+- elsif @ballot.ballot_type == "Private"
+  = render partial: "private", object: @ballot
+
+- if closed?(@ballot)
+  - @comments.each do |vote|
+    %table.table.table-bordered.table-striped.table-sm
+      %thead.thead-light
+        %tr
+          %td
+            Vote
+          %td
+            Comment
+        %tr
+          %td
+            = vote.user_vote
+          %td
+            = vote.comment

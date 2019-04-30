@@ -1,0 +1,16 @@
+%table.table.table-bordered.table-striped
+  %tr
+    %th
+      Pending Ballots
+    %th
+      How many
+  - if @open_ballots.empty?
+    %tr
+      %td No pending ballots! Nice.
+  - else
+    - @open_ballots.each do |ballot|
+      %tr
+        %td
+          = link_to ballot.ballot_issue, pending_path(ballot)
+        %td
+          = find_users_that_have_not_voted(ballot.id).count
