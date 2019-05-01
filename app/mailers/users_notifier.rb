@@ -1,6 +1,6 @@
 
 class UsersNotifier < ActionMailer::Base
-  default :from => "any_from_address@example.com"
+  default :from => "ccballot.sick&tight.com"
 
   def send_signup_email(user)
     @user = user
