@@ -7,6 +7,8 @@ class User < ApplicationRecord
   before_create :default_values
 
   validates :email, :username, uniqueness: true
+  validates :password, presence: true
+  validates :password, confirmation: { case_sensitive: true }
 
   has_many :votes
   has_many :ballots

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  after_action :send_new_user_email, only: [:create]
+
   def new
     @user = User.new
   end
@@ -22,9 +24,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #send confirmation
-      UsersMailer.signup_confirmation(@user).deliver
-      redirect_to root_path
+      sign_in(@user)
+      redirect_to ballots_path
     else
       render "new"
     end
@@ -50,8 +51,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def change_password
-    @user = User.find(params[:id])
+  def send_new_user_email
+    UsersNotifier.send_signup_email(@user).deliver
   end
 
   private
