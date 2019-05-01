@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     if user_signed_in?
-      @users = User.where(active: true)
+      @users = User.where(confirmed: true).order(username: :asc)
     else
       redirect_to user_session_path
     end
