@@ -5,7 +5,7 @@ class UsersNotifier < ActionMailer::Base
   def send_signup_email(user)
     @user = user
     mail(:to => @user.email,
-         :subject => "New ballot, cats!")
+         :subject => "One of us!")
   end
 
   def ballot_email(ballot)
