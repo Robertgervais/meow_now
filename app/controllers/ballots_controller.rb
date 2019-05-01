@@ -31,7 +31,7 @@ class BallotsController < ApplicationController
       @ballot = Ballot.new(ballot_params)
       @ballot.user_id = current_user.id
       if @ballot.save
-        UsersMailer.new_ballot(User.all, @ballot.id, @ballot.ballot_issue, @ballot.user.username).deliver
+        UsersNotifier.ballot_email(@ballot).deliver
         redirect_to ballots_path
       else
         @ballot.full_error_messages
@@ -74,7 +74,7 @@ class BallotsController < ApplicationController
     @users = User.all
     @ballot = Ballot.find(params[:format])
     @ballot.update(votable: false)
-    UsersMailer.close_ballot(@users, @ballot.id, @ballot.ballot_issue).deliver
+    UsersNotifier.close(@ballot).deliver
     redirect_to ballots_path
   end
 
