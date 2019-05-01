@@ -7,13 +7,17 @@ class User < ApplicationRecord
   before_create :default_values
 
   validates :email, :username, uniqueness: true
-  validates :password, presence: true
-  validates :password, confirmation: { case_sensitive: true }
 
   has_many :votes
   has_many :ballots
   has_many :user_roles
   has_many :roles, through: :user_roles
+
+  after_create :send_new_user_email
+
+  def send_new_user_email
+    UsersNotifier.send_signup_email(self).deliver
+  end
 
   def downcase_email
     self.email.downcase!

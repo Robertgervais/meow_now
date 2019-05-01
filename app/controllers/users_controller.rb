@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  after_action :send_new_user_email, only: [:create]
-
   def new
     @user = User.new
   end
@@ -49,10 +47,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
-  end
-
-  def send_new_user_email
-    UsersNotifier.send_signup_email(@user).deliver
   end
 
   private

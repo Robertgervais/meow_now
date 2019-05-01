@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "ballots#index"
-  devise_for :users, :controllers => { :registrations => "users" }
+  devise_for :users
   resources :users
   resources :ballots
   resources :roles
