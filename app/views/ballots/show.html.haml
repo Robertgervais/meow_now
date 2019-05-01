@@ -26,7 +26,8 @@
 - if current_user == @ballot.user || current_user_is_admin
   .row
     .col-md-2
-      = link_to 'Send Reminder', send_reminder_path(@ballot), :class => "btn btn-primary"
+      -# need to add this mailer
+      -# = link_to 'Send Reminder', send_reminder_path(@ballot), :class => "btn btn-primary"
     .col-md-2
       = link_to 'Close', close_path(@ballot), :class => "btn btn-primary"
     .col-md-2
