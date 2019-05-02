@@ -18,9 +18,9 @@ Rails.application.routes.draw do
 
   # root "ballots#index"
   # resources :users
-  # resources :ballots do
-  #   resources :votes
-  # end
+  resources :ballots do
+    resources :votes
+  end
 
   # delete "logout", to: "sessions#destroy"
 

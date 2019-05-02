@@ -50,7 +50,7 @@
 - elsif @ballot.ballot_type == "Private"
   = render partial: "private", object: @ballot
 
-- if closed?(@ballot)
+- if closed?(@ballot) && current_user.admin
   - @comments.each do |vote|
     %table.table.table-bordered.table-striped.table-sm
       %thead.thead-light
