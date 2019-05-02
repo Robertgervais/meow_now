@@ -41,7 +41,7 @@
   .col-auto
     %ul.list-unstyled
       - @results.each do |key, value|
-        - if !value.empty?
+        - if !value.blank?
           %li
             = "#{key}: #{value}"
 
