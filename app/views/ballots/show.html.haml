@@ -43,7 +43,7 @@
       - @results.each do |key, value|
         - if !value.blank?
           %li
-            = "#{key}: #{value}"
+            = "#{key}: #{value.truncate(2)}"
 
 - if @ballot.ballot_type == "Public"
   = render partial: "public", object: @ballots
