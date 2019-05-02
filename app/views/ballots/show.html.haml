@@ -23,7 +23,7 @@
         = @ballot.content.gsub(/\n/, '<br />').html_safe
   .col-md-6
     = render partial: "support_or_vote"
-- if current_user == @ballot.user || current_user_is_admin
+- if current_user == @ballot.user || current_user.admin
   .row
     .col-md-2
       -# need to add this mailer
