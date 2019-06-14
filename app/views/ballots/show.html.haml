@@ -51,6 +51,8 @@
   = render partial: "private", object: @ballot
 
 - if closed?(@ballot) && current_user.admin
+  %h3
+    Comments -
   %table.table.table-bordered.table-striped.table-sm
     %thead.thead-light
       %tr
