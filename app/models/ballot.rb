@@ -53,7 +53,7 @@ class Ballot < ActiveRecord::Base
 				tallied_votes[""] = ""
 		elsif not_enough_b_members
 			get_options.each do |option|
-				tallied_votes.store[option] = get_results_count(option)
+				tallied_votes[option] = get_results_count(option)
 			end
 		else
 			get_options.each do |option|
@@ -67,7 +67,8 @@ class Ballot < ActiveRecord::Base
 		ballot_votes.select{|vote| vote.user.membership == "#{membership}" && vote.user.active == true}.count.to_f
 	end
 	
-	private
+
+  private
 	def set_expiration_date
 		if self.include_weekend
 			self.expiration = DateTime.now + 96.hours
