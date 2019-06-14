@@ -51,16 +51,17 @@
   = render partial: "private", object: @ballot
 
 - if closed?(@ballot) && current_user.admin
-  - @comments.each do |vote|
-    %table.table.table-bordered.table-striped.table-sm
-      %thead.thead-light
+  %table.table.table-bordered.table-striped.table-sm
+    %thead.thead-light
+      - @comments.each do |vote|
         %tr
           %td
             Vote
           %td
             Comment
         %tr
-          %td
-            = vote.user_vote
-          %td
-            = vote.comment
+          - if !vote.user_vote.empty?!
+            %td
+              = vote.user_vote
+            %td
+              = vote.comment
