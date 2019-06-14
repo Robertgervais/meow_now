@@ -53,12 +53,12 @@
 - if closed?(@ballot) && current_user.admin
   %table.table.table-bordered.table-striped.table-sm
     %thead.thead-light
+      %tr
+        %th
+          Vote
+        %th
+          Comment
       - @comments.each do |vote|
-        %tr
-          %td
-            Vote
-          %td
-            Comment
         %tr
           %td
             = vote.user_vote
