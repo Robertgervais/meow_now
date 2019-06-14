@@ -1,6 +1,6 @@
 module BallotHelper
   def find_comments(ballot)
-    ballot.votes.select { |vote| !vote.comment.empty? }
+    ballot.votes.select { |vote| !vote.comment.nil? }
   end
 
   def ballot_has_votes
