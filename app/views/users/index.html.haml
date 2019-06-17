@@ -10,6 +10,8 @@
       - if current_user.admin
         %th
           Remove Roles
+      %th
+        id
   - @users.each do |user|
     %tr
       %td
@@ -32,3 +34,5 @@
         - else
           %td
             User has no roles
+      %td
+        = user.id
