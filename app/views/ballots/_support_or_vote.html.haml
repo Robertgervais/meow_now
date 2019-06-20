@@ -1,6 +1,6 @@
 .col-md-7
 .col-md-5
-  - if @ballot.ballot_type == "Private" || @ballot.has_support? && @ballot.votable
+  - if @ballot.has_support? && @ballot.votable
     = form_for :vote, url: ballot_votes_path(@ballot) do |f|
       - @radio.each do |option|
         = radio_button_tag(:user_vote, "#{option.strip}")
