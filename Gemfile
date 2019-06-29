@@ -59,6 +59,8 @@ end
 group :test do
   gem "guard", "~> 2.13.0", require: false
   gem "guard-rspec", "~> 4.6.4", require: false
+  gem "rails-controller-testing"
+  gem "database_cleaner"
 end
 
 group :development do
