@@ -32,4 +32,17 @@ RSpec.describe BallotsController, type: :controller do
       expect(response).to render_template("new")
     end
   end
+  describe "close" do
+    let(:user) { FactoryBot.create(:user_confirmed) }
+    let(:ballot) { FactoryBot.create(:ballot) }
+    it "closes the ballot" do
+      login_user(user)
+      ballot.reload
+      # Need to fix this format thing, params are sending weird but that's what I'm testing rn
+      put :close, params: { format: ballot.id }
+      ballot.reload
+      expect(ballot.votable).to be false
+      expect(response).to redirect_to ballots_path
+    end
+  end
 end
