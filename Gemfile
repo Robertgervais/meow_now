@@ -54,6 +54,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "foreman"
   gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
 group :test do
