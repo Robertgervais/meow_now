@@ -33,17 +33,19 @@
     .col-md-2
       = link_to 'Delete', @ballot, method: :delete, :class => "btn btn-danger"
   %br/
-.row
-  .col-auto
-    %p
-      Vote Results:
-.row
-  .col-auto
-    %ul.list-unstyled
-      - @results.each do |key, value|
-        - if !value.blank?
-          %li
-            = "#{key}: #{value.truncate(2)}"
+- if @ballot.ballot_type == "Public" || closed?(@ballot)
+  .row
+    .col-auto
+      %p
+        Vote Results:
+  .row
+    .col-auto
+      %ul.list-unstyled
+        - @results.each do |key, value|
+          - if !value.blank?
+            %li
+              = "#{key}: #{value.truncate(2)}"
+- else
 
 - if @ballot.ballot_type == "Public"
   = render partial: "public", object: @ballots

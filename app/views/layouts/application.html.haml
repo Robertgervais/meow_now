@@ -10,34 +10,38 @@
   %body
     - if user_signed_in?
       %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.admin-navbar.sticky-top
-        %ul.navbar-nav
-          %li.nav-item
-            = link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link"
-          %li.dropdown.nav-item
-            %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
-              Ballots
-            .dropdown-menu.admin-nav-dropdown
-              = link_to "All Ballots", ballots_path, class: "btn btn-light dropdown-item"
-              = link_to "New Ballots", new_ballot_path, class: "btn btn-light dropdown-item"
-          %li.dropdown.nav-item
-            %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
-              Members
-            .dropdown-menu.admin-nav-dropdown
-              = link_to "All Members", users_path, class: "btn btn-light dropdown-item"
-              = link_to "Committee members", committee_path, class: "btn btn-light dropdown-item"
-          - if current_user.admin
+        %a.navbar-brand{:href => "#"} Nav
+        %button.navbar-toggler{"aria-controls" => "meow-nav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#meow-nav", "data-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #meow-nav.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item
+              = link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link"
             %li.dropdown.nav-item
               %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
-                Admin
+                Ballots
               .dropdown-menu.admin-nav-dropdown
-                = link_to "Awaiting members", awaiting_confirmation_path, class: "btn btn-light dropdown-item"
-                = link_to "Pending ballots", pending_index_path, class: "btn btn-light dropdown-item"
+                = link_to "All Ballots", ballots_path, class: "btn btn-light dropdown-item"
+                = link_to "New Ballots", new_ballot_path, class: "btn btn-light dropdown-item"
             %li.dropdown.nav-item
               %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
-                Roles
+                Members
               .dropdown-menu.admin-nav-dropdown
-                = link_to "Roles", roles_path, class: "btn btn-light dropdown-item"
-                = link_to "Create new role", new_role_path, class: "btn btn-light dropdown-item"
+                = link_to "All Members", users_path, class: "btn btn-light dropdown-item"
+                = link_to "Committee members", committee_path, class: "btn btn-light dropdown-item"
+            - if current_user.admin
+              %li.dropdown.nav-item
+                %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
+                  Admin
+                .dropdown-menu.admin-nav-dropdown
+                  = link_to "Awaiting members", awaiting_confirmation_path, class: "btn btn-light dropdown-item"
+                  = link_to "Pending ballots", pending_index_path, class: "btn btn-light dropdown-item"
+              %li.dropdown.nav-item
+                %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown"}
+                  Roles
+                .dropdown-menu.admin-nav-dropdown
+                  = link_to "Roles", roles_path, class: "btn btn-light dropdown-item"
+                  = link_to "Create new role", new_role_path, class: "btn btn-light dropdown-item"
     %p.alert= alert
     .container
       = yield
