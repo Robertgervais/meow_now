@@ -68,16 +68,16 @@ class Ballot < ActiveRecord::Base
 	end
 
   def count_members
-    A = 0
-    B = 0
+    a = 0
+    b = 0
     ballot_votes.each do |vote|
       if vote.user.membership == "A" && vote.user.active == true
-        A += 1
+        a += 1s
       elsif vote.user.membership == "B" && vote.user.active == true
-        B += 1
+        b += 1
       end
     end
-    votes = {"A": A, "B": B}
+    votes = {"A": a, "B": b}
   end
 	
 
