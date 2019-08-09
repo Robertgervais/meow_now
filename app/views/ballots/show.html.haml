@@ -69,7 +69,7 @@
         %tr
           - if current_user.id == 1
             %td
-              = vote.user
+              = vote.user.username
           %td
             = vote.user_vote
           %td
