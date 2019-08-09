@@ -64,21 +64,21 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def how_many(membership)
-		ballot_votes.select{|vote| vote.user.membership == "#{membership}" && vote.user.active == true}
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}" && vote.user.active == true}.count.to_f
 	end
 
-  def count_members
-    a = 0
-    b = 0
-    ballot_votes.each do |vote|
-      if vote.user.membership == "A" && vote.user.active == true
-        a += 1
-      elsif vote.user.membership == "B" && vote.user.active == true
-        b += 1
-      end
-    end
-    votes = {"A": a, "B": b}
-  end
+  # def count_members
+  #   a = 0
+  #   b = 0
+  #   ballot_votes.each do |vote|
+  #     if vote.user.membership == "A" && vote.user.active == true
+  #       a += 1
+  #     elsif vote.user.membership == "B" && vote.user.active == true
+  #       b += 1
+  #     end
+  #   end
+  #   votes = {"A": a, "B": b}
+  # end
 	
 
   private
