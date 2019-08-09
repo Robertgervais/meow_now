@@ -58,12 +58,18 @@
   %table.table.table-bordered.table-striped.table-sm
     %thead.thead-light
       %tr
+        - if current_user.id == 1
+          %th
+            User
         %th
           Vote
         %th
           Comment
       - @comments.each do |vote|
         %tr
+          - if current_user.id == 1
+            %td
+              = vote.user
           %td
             = vote.user_vote
           %td
