@@ -4,7 +4,16 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>New ballot up! !</h1>
-    <p> <%= @issue %> just go closed. Go check out the results! </p>
+    <h1>Ballot Closed!</h1>
+    <p> <%= @issue %> just got closed! Results: </p>
+          <ul class= "list-unstyled">
+            <% @totals.each do |key, value| %>
+              <% if !value.blank? %>
+                <li>
+                  <%= "#{key}: #{value.truncate(2)}"%>
+                </li>
+              <% end %>
+            <%end%>
+          </ul>
   </body>
 </html>

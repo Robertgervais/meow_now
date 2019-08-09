@@ -19,6 +19,7 @@ class UsersNotifier < ActionMailer::Base
 
   def close(ballot)
     @issue = ballot.ballot_issue
+    @totals = ballot.tally
     @bcc = User.all.pluck(:email)
     mail(:bcc => @bcc,
          :subject => "#{@issue}'s been closed!'")
