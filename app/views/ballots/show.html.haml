@@ -60,7 +60,11 @@
       %tr
         - if current_user.id == 1
           %th
+            ID
+          %th
             User
+          %th
+            Membership
         %th
           Vote
         %th
@@ -69,7 +73,11 @@
         %tr
           - if current_user.id == 1
             %td
+              = vote.user.id
+            %td
               = vote.user.username
+            %td
+              = vote.user.membership
           %td
             = vote.user_vote
           %td
