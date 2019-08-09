@@ -72,7 +72,7 @@ class Ballot < ActiveRecord::Base
     b = 0
     ballot_votes.each do |vote|
       if vote.user.membership == "A" && vote.user.active == true
-        a += 1s
+        a += 1
       elsif vote.user.membership == "B" && vote.user.active == true
         b += 1
       end
