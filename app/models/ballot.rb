@@ -64,7 +64,7 @@ class Ballot < ActiveRecord::Base
 	end
 
 	def how_many(membership)
-		ballot_votes.select{|vote|count += 1 if vote.user.membership == "#{membership}" && vote.user.active == true}
+		ballot_votes.select{|vote| vote.user.membership == "#{membership}" && vote.user.active == true}
 	end
 
   def count_members
