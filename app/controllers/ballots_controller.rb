@@ -32,6 +32,8 @@ class BallotsController < ApplicationController
       @ballot.user_id = current_user.id
       if @ballot.save
         UsersNotifier.ballot_email(@ballot).deliver
+        ReminderEmail.create(ballot_id: @ballot.id, next_run_at: @ballot.expiration_total)
+
         redirect_to ballots_path
       else
         @ballot.full_error_messages
