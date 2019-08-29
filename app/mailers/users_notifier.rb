@@ -26,7 +26,9 @@ class UsersNotifier < ActionMailer::Base
   end
 
   def send_reminder(ballot, users)
-    @users = users.pluck(:email)
     @issue = ballot.ballot_issue
+    @users = users.pluck(:email)
+    mail(:bcc => @users,
+         :subject => "Helllooooo please vote on #{@issue}")
   end
 end

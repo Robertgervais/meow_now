@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190430015351) do
+ActiveRecord::Schema.define(version: 20190829214626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,12 @@ ActiveRecord::Schema.define(version: 20190430015351) do
   create_table "emails", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reminder_emails", force: :cascade do |t|
+    t.integer "ballot_id", null: false
+    t.datetime "next_run_at", null: false
+    t.index ["next_run_at"], name: "index_reminder_emails_on_next_run_at"
   end
 
   create_table "roles", force: :cascade do |t|
