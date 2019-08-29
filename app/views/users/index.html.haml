@@ -1,4 +1,4 @@
-%table.table.table-bordered.table-striped.table-sm
+%table.table.table-bordered.table-sm
   %thead.thead-light
     %tr
       %th
@@ -15,7 +15,7 @@
       %th
         id
   - @users.each do |user|
-    %tr
+    %tr{class: user.membership == "A" ? "A-member" : "B-member"}
       %td
         - if current_user.admin
           = link_to user.username, edit_user_path(user)

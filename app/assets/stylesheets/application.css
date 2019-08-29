@@ -16,3 +16,11 @@
 .nav-item {
   cursor: pointer;
 }
+
+.A-member{
+  background: #F0FFFF;
+}
+
+.B-member{
+  background: #CCCCCC;
+}
