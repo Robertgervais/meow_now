@@ -24,4 +24,9 @@ class UsersNotifier < ActionMailer::Base
     mail(:bcc => @bcc,
          :subject => "#{@issue}'s been closed!'")
   end
+
+  def send_reminder(ballot, users)
+    @users = users.pluck(:email)
+    @issue = ballot.ballot_issue
+  end
 end
