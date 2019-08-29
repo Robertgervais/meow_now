@@ -82,7 +82,7 @@ class BallotsController < ApplicationController
     @users = find_users_that_have_not_voted(params[:format])
     @ballot_id = params[:format]
     @ballot = Ballot.find(params[:format])
-    UsersNotifier.send_reminder(@ballot, @users).deliver
+    #need to add mailer here
     redirect_to ballots_path
   end
 
