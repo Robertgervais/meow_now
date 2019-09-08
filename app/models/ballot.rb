@@ -5,6 +5,10 @@ class Ballot < ActiveRecord::Base
   before_create :set_expiration_date, :set_votable
 
   validates :options, presence: true
+  
+  def enough_votes?
+    (how_many("A") / User.all.select { |user| user.membership == "A" && user.active == true }.count).to_f >= 0.75
+  end
 
   def expired?
     Time.now > self.expiration
@@ -138,9 +142,5 @@ class Ballot < ActiveRecord::Base
 
   def ballot_votes
     self.votes
-  end
-
-  def enough_votes?
-    (how_many("A") / User.all.select { |user| user.membership == "A" && user.active == true }.count).to_f >= 0.75
   end
 end

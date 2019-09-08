@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe UsersNotifier, type: :mailer do
   let(:user) { FactoryBot.create(:user_confirmed) }
   let(:ballot) {FactoryBot.create(:ballot, ballot_issue: "Hi")}
-  let(:all_users) {User.all}
   describe "send_signup_email" do
     it "renders an email" do
       mail = UsersNotifier.send_signup_email(user)
