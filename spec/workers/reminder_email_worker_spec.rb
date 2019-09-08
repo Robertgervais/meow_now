@@ -1,4 +1,7 @@
 require 'rails_helper'
 RSpec.describe ReminderEmailWorker, type: :worker do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) {FactoryBot.create(:user_confirmed)}
+  it "queues up a reminder email" do
+
+  end
 end

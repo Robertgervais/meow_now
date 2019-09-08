@@ -10,3 +10,4 @@ example_id                                           | status | run_time        
 ./spec/mailers/users_notifier_spec.rb[1:4:1]         | passed | 0.0081 seconds  |
 ./spec/models/ballot_spec.rb[1:1:1]                  | passed | 0.02845 seconds |
 ./spec/models/user_spec.rb[1:1:1]                    | passed | 0.30774 seconds |
+./spec/workers/reminder_email_worker_spec.rb[1:1]    | passed | 0.00088 seconds |
