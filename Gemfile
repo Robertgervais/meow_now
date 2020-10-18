@@ -13,7 +13,7 @@ gem "sidekiq-cron", "~> 0.6.3"
 gem "sinatra", github: "sinatra/sinatra"
 gem "redis"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.1.6"
+gem "rails", "~> 6.0.0"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
@@ -28,6 +28,10 @@ gem "gon"
 
 gem "jquery-rails"
 gem "bootstrap"
+
+gem "activesupport", ">= 5.2.4.3"
+gem "actionpack", ">= 5.2.4.3"
+gem "actionview", ">= 5.2.4.4"
 
 gem "figaro"
 
