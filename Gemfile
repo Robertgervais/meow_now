@@ -8,6 +8,7 @@ end
 
 gem "honeybadger"
 
+gem "rake"
 gem "sidekiq"
 gem "sidekiq-cron", "~> 0.6.3"
 gem "sinatra", github: "sinatra/sinatra"
