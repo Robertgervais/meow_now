@@ -29,6 +29,9 @@ gem "gon"
 gem "jquery-rails"
 gem "bootstrap"
 
+# pagination gem
+gem 'pagy', '~> 3.5'
+
 gem "figaro"
 
 gem 'activesupport', '~> 5.0'

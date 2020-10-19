@@ -5,7 +5,7 @@ class BallotsController < ApplicationController
 
   def index
     if user_signed_in?
-      @ballots = Ballot.all.order("created_at desc")
+      @pagy, @ballots = pagy(Ballot.all.order("created_at desc"), items: 10)
     else
       redirect_to new_user_session_path
     end
