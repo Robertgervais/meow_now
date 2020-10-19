@@ -6,7 +6,7 @@ RSpec.describe BallotsController, type: :controller do
     it "renders" do
       login_user(user)
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template("index")
     end
   end
@@ -17,7 +17,7 @@ RSpec.describe BallotsController, type: :controller do
       login_user(user)
       ballot.reload
       get :show, params: { id: ballot.id }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template("show")
     end
   end
@@ -28,7 +28,7 @@ RSpec.describe BallotsController, type: :controller do
       login_user(user)
       ballot.reload
       get :new, params: { id: ballot.id }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template("new")
     end
   end

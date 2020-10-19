@@ -9,7 +9,7 @@ class UsersNotifier < ActionMailer::Base
   end
 
   def ballot_email(ballot)
-    @url = ballot_url(ballot.id)
+    @url = "http://shielded-falls-33734.herokuapp.com/ballots/#{ballot.id}"
     @issue = ballot.ballot_issue
     @creator = ballot.user
     @bcc = User.all.pluck(:email)
