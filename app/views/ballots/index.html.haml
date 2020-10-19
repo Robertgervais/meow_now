@@ -1,3 +1,4 @@
+
 %h1 Ballots
 %table.table.table-bordered.table-striped
   %tr
@@ -26,3 +27,4 @@
         %td.bg-danger Expired but awaiting Votes
       - else
         %td.bg-success Active
+!= pagy_bootstrap_nav(@pagy)

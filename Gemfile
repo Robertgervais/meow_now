@@ -30,6 +30,9 @@ gem "activesupport", "~> 6.0"
 gem "jquery-rails"
 gem "bootstrap"
 
+# pagination gem
+gem 'pagy', '~> 3.5'
+
 gem "figaro"
 
 # Use CoffeeScript for .coffee assets and views
