@@ -8,6 +8,10 @@ class UsersNotifier < ActionMailer::Base
          :subject => "One of us!")
   end
 
+  def ballot_url(id)
+    "http://shielded-falls-33734.herokuapp.com/ballots/#{id}"
+  end
+
   def ballot_email(ballot)
     @url = ballot_url(ballot.id)
     @issue = ballot.ballot_issue
