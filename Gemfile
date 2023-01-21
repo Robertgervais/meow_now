@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.7.2"
+ruby "3.1.3"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,8 +8,6 @@ end
 
 gem "honeybadger"
 
-gem "sidekiq"
-gem "sidekiq-cron", "~> 0.6.3"
 gem "sinatra", github: "sinatra/sinatra"
 gem "redis"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

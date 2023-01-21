@@ -13,14 +13,6 @@ Rails.application.routes.draw do
   get "awaiting_confirmation", to: "users#awaiting_confirmation"
   get "pending/:id", to: "ballots#pending", as: :pending
   get "remove_roles/:id", to: "user_roles#remove_roles", as: :remove_roles
-  require "sidekiq/web"
-  mount Sidekiq::Web => "/sidekiq"
-
-  # root "ballots#index"
-  # resources :users
-  resources :ballots do
-    resources :votes
-  end
 
   # delete "logout", to: "sessions#destroy"
 
