@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.5.1"
+ruby "3.1.3"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,8 +8,6 @@ end
 
 gem "honeybadger"
 
-gem "sidekiq"
-gem "sidekiq-cron", "~> 0.6.3"
 gem "sinatra", github: "sinatra/sinatra"
 gem "redis"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -35,6 +33,7 @@ gem 'pagy', '~> 3.5'
 
 gem "figaro"
 
+gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 4.2"
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
