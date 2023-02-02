@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles
 
-  after_create :send_new_user_email
+  # after_create :send_new_user_email
 
   # def send_new_user_email
   #   UsersNotifier.send_signup_email(self).deliver
