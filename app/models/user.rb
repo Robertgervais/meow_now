@@ -15,9 +15,9 @@ class User < ApplicationRecord
 
   after_create :send_new_user_email
 
-  def send_new_user_email
-    UsersNotifier.send_signup_email(self).deliver
-  end
+  # def send_new_user_email
+  #   UsersNotifier.send_signup_email(self).deliver
+  # end
 
   def downcase_email
     self.email.downcase!
