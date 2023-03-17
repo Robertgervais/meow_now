@@ -24,7 +24,7 @@ gem "uglifier", ">= 1.3.0"
 # gem 'therubyracer', platforms: :ruby
 gem "gon"
 
-gem "activesupport", "~> 6.0"
+gem "activesupport", "~> 6.1"
 gem "jquery-rails"
 gem "bootstrap"
 
